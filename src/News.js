@@ -3,6 +3,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 export default class News extends React.Component {
     constructor(props) {
         super(props);
@@ -25,14 +28,37 @@ export default class News extends React.Component {
                 loading: false,
             })
         })
+        this.generateLog();
+    }
+
+    generateLog = () => {
+        var log ="[ " + Date().toLocaleString() + " ]";
+        log += " | news api called";
+        log += " | input = " + this.state.input + "\n";
+        log = encodeURI(log);
+        console.log(log);
+        var url = "http://software.engineering.malvat.myweb.cs.uwindsor.ca/log_file.php?log=" + log;
+        fetch(url).then((response)=>{
+            //do nothing
+            console.log("api called");
+        })
+        console.log("log called");
     }
 
     printNews = () => {
-        var hela = ['a', 'n', 'i', 'm'];
         return(this.state.news.response.results.slice(0,4).map((data, i)=>(
             <p>
                 <a href={data.webUrl} style={{textDecoration: "none"}} key={i}> {data.webTitle} </a>
             </p>)))
+    }
+
+    updateInput = (e) => {
+        this.setState({
+            news: this.state.news,
+            "input": e.target.value,    
+            loading: false,
+        })
+        console.log(e.target.value);
     }
 
     render(){
@@ -62,6 +88,12 @@ export default class News extends React.Component {
                             <Typography >
                                 { this.printNews() }
                             </Typography>
+                        </div>
+                        <div>
+                            <TextField variant="filled" value={this.state.input} onChange={this.updateInput} label="search" size="small"/>   
+                            &nbsp;
+                            &nbsp;
+                            <Button size="large" color="primary" onClick={()=>{this.getNews(); return;}}> GO </Button>
                         </div>
                     </CardContent>
                 </Card>

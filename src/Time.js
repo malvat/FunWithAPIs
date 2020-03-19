@@ -7,9 +7,11 @@ export default class Time extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            clock: new Date()
+            clock: new Date(),
+            "greetings": "Good Morning"
         }
         setInterval(this.tick, 60000);
+        setInterval(this.setGreeting, 1000);
     }
 
     tick = () => {
@@ -24,12 +26,32 @@ export default class Time extends React.Component{
             })
     }
 
+    setGreeting = ()=> {
+        const clk = this.state.clock.getHours();
+        if(clk < 12) {
+            this.setState({
+                clock: this.state.clock,
+                "greetings": "Good Morning"
+            })
+        } else if(clk < 18) {
+            this.setState({
+                clock: this.state.clock,
+                "greetings": "Good Evening"
+            })
+        } else {
+            this.setState({
+                clock: this.state.clock,
+                "greetings": "Good Night"
+            })
+        }
+    }
+
     render(){
         return(
             <Card variant="outlined">
                 <CardContent>
                     <Typography variant="h6">
-                        Good Morning
+                        {this.state.greetings}
                     </Typography>
                     <div>
                         <Typography variant="h5">

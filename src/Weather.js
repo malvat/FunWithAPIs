@@ -11,7 +11,8 @@ export default class Weather extends React.Component {
             loading: true,
             weather: {}
         }
-        // this.initialize();
+        this.initialize();
+        this.generateLog();
     }
 
     initialize() {
@@ -40,6 +41,19 @@ export default class Weather extends React.Component {
                 weather: jsonData
             })
         });
+    }
+
+    generateLog = () => {
+        var log ="\n[ " + Date().toLocaleString() + " ]";
+        log += " | weather api called \n";
+        log = encodeURI(log);
+        console.log(log);
+        var url = "http://software.engineering.malvat.myweb.cs.uwindsor.ca/log_file.php?log=" + log;
+        fetch(url).then((response)=>{
+            //do nothing
+            console.log("api called");
+        })
+        console.log("log called");
     }
 
     render(){

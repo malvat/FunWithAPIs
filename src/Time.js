@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-
+import { WiSunrise, WiDaySunny, WiNightClear } from 'weather-icons-react';
 export default class Time extends React.Component{
     constructor(props){
         super(props);
@@ -46,6 +46,16 @@ export default class Time extends React.Component{
         }
     }
 
+    placeImage = () => {
+        if(this.state.greetings == "Good Morning"){
+            return(<WiSunrise size={60} />);
+        } else if(this.state.greetings == "Good Evening") {
+            return(<WiDaySunny size={60} />);
+        } else {
+            return(<WiNightClear size={60} />);
+        }
+    }
+
     render(){
         return(
             <Card variant="outlined">
@@ -54,6 +64,7 @@ export default class Time extends React.Component{
                         {this.state.greetings}
                     </Typography>
                     <div>
+                        {this.placeImage()}
                         <Typography variant="h5">
                             {String(this.state.clock.getHours()).padStart(2, '0')} : {String(this.state.clock.getMinutes()).padStart(2,'0')}
                         </Typography>

@@ -33,7 +33,7 @@ export default class Weather extends React.Component {
         &end=${endt}`,{
         //it is unsafe to use api key here but for demonstration purpose we have used it here
         headers: {
-            'Authorization': 'fae21386-69a6-11ea-a6ce-0242ac130002-fae21476-69a6-11ea-a6ce-0242ac130002'
+            'Authorization': '1f578c04-69f8-11ea-b89c-0242ac130002-1f578d94-69f8-11ea-b89c-0242ac130002'
         }
         }).then((response) => response.json()).then((jsonData) => {
             this.setState({

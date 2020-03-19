@@ -21,7 +21,8 @@ export default class NavBar extends React.Component {
         super(props);
         this.state = {
             open: false,
-            about: false
+            about: false,
+            tutorial: false
         }
         this.openDrawer = this.openDrawer.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -29,7 +30,7 @@ export default class NavBar extends React.Component {
         this.closedDrawer = this.toggleDrawer.bind(this);
     }
     list = () => {
-        var itemlist = ["Home", "Github", "About us", "Log File (Demonstration)"];
+        var itemlist = ["Home", "Github", "About us", "Log File (Demonstration)", "Tutorial"];
         return(
             <div onClick={this.closedDrawer}>
                 <List>
@@ -50,10 +51,19 @@ export default class NavBar extends React.Component {
         if(key == 2) {
             this.setState({
                 open: this.state.open,
-                about: true
+                about: true,
+                tutorial: this.state.tutorial
             })
         } else if(key==1) {
             window.location.href = "https://github.com/animmalvat/fun";
+        } else if(key == 3) {
+            window.location.href = "http://www.software.engineering.malvat.myweb.cs.uwindsor.ca/transaction.log";
+        } else if(key == 4) {
+            this.setState({
+                open: this.state.open,
+                about: false,
+                tutorial: true
+            })
         }
     }
 
@@ -89,10 +99,38 @@ export default class NavBar extends React.Component {
             about: false
         })
     }
+
+    closeTutorial = () => {
+        this.setState({
+            open: this.state.open,
+            about: false,
+            tutorial: false
+        })
+    }
     render() {
         return(
             <div>
                 <AppBar position="static">
+                <Dialog open={this.state.tutorial}>
+                        <DialogTitle>
+                            Tutorial
+                        </DialogTitle>
+                        <DialogContent>
+                            APIs Used <br></br><br></br>
+                            News Api: <a href="https://open-platform.theguardian.com/access/">https://open-platform.theguardian.com/access/</a> <br></br>
+                            Weather Api: <a href="https://stormglass.io/">https://stormglass.io/</a> <br></br>
+                            Quote Api: <a href="https://programming-quotes-api.herokuapp.com/"> https://programming-quotes-api.herokuapp.com/ </a> <br></br>
+                            Time Api: <a href="http://worldtimeapi.org/">http://worldtimeapi.org/</a> <br></br> <br></br>
+                            For the most part, it is fairly straight forward but, for news api, you can search for whatever news article you want. <br></br>
+                            Top 4 news are shown <br></br> <br></br>
+                            For quotes: you may click random button for new quote
+
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={()=>{this.closeTutorial(); return;}}> Ok </Button>
+                        </DialogActions>
+                    </Dialog>
+
                     <Dialog open={this.state.about}>
                         <DialogTitle>
                             About us

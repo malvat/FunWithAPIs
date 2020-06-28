@@ -1,16 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
 ### you can visit our website
-https://romantic-elion-fd88ad.netlify.com/
+https://react-funwithapis.netlify.app/
+
+### Making use of APIs to some front-end
+-React for my front-end, because react is faster and easy to develop with framework. 
+-PHP to store log data to database (and hence, as a backend) 
+-Used some APIs
+-Material react framework

@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## APIs
+- Introduction to APIs and using them to reduce amount of development
+- a college assignement, front-end work by me 
+- Migrated to my new GitHub account
 ### you can visit our website
 https://react-funwithapis.netlify.app/
 
